@@ -209,16 +209,16 @@ Practice accessing data above by console.log-ing following items:
 (1) Name of the first artist (0th index) in the array
 (2) Bio of the third artist (2nd index) in the array */
 
-console.log(artists[0]['name']);
-console.log(artists[2]['bio']);
+console.log(artists[0].name);
+console.log(artists[2].bio);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
-const artists2 = [...artists]
-artists2[8]['name']="Vincent van Gogh";
-console.log(artists2[8]['name']);
+console.log(artists[8].name);
+artists[8].name="Vincent van Gogh";
 
+console.log(artists[8].name);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Create a function called `getArtistByIndex` that takes two arguments:
@@ -230,7 +230,7 @@ Create a function called `getArtistByIndex` that takes two arguments:
  * it will return `The artist at index 0 is Amedeo Modigliani`.
 */
 function getArtistByIndex(arr, ind) {
-  return `the artist at index ${ind} is ${arr[ind]['name']}`
+  return `the artist at index ${ind} is ${arr[ind].name}`
 }
 console.log(getArtistByIndex(artists,0));
   
@@ -245,7 +245,7 @@ function get20s(arr){
     let born = Number(lived[0]);
     let died = Number(lived[1]);
     if (born >= 1900 && died <= 2000){
-      matching.push(arr[i]['name']);
+      matching.push(arr[i].name);
     }
   }
   return matching;
@@ -265,11 +265,11 @@ Create a function called `removeArtist` that takes two arguments:
  * Note that sucessfully invoking this function multiple times without refreshing your browser will continuously remove artists from the array until there are none left. If you refresh your browser, the data will reset.  
 */
 function removeArtist(arr, ind) {
-  arr.splice(ind,1);
-  // console.log(arr.length);
+   arr.splice(ind,1);
   return arr.length;
 }
-   
+console.log(removeArtist(artists,0));
+
 
 /**
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -284,13 +284,21 @@ nationality: Your Nationality Here
 bio: Add 1-2 sentences (or use lorem ipsum) 
 
 At the end, this function should return the new array with information added"*/
+const meArt= {
+  'id': 20,
+  'name': 'Jay',
+  'years': '1990 - now',
+  'genre': 'Web Design',
+  'nationality': 'American',
+  'bio': 'I do web design! I like it!'
+}
 
-function addArtist(id, name, years, genre, nationality, bio){
-  artists2.push({id, name, years, genre, nationality, bio});
-  return artists2;
+function addArtist(arr, newArtist){
+  arr.push(newArtist);
+  return arr;
   }
 
-  console.log(addArtist(20, 'Jay', '1990 - now', 'Web Design', 'American', 'I do web design! I like it!'));
+  console.log(addArtist(artists, meArt));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Create a function called lotsOfArt() that takes one argument: 
@@ -303,10 +311,9 @@ For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte
 
 function lotsOfArt(arr){
   let matchingLots = [];
-  for (let i = 0; i < artists.length; i++){
-    if (arr[i]['paintings'] > 100){
-      let name = arr[i]['name'];
-      matchingLots.push(name);
+  for (let i = 0; i < arr.length; i++){
+    if (arr[i].paintings > 100){
+      matchingLots.push(arr[i].name);
     }
   }
   return matchingLots;
@@ -337,12 +344,14 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
-
-    /* Code here */
+function getHTML(arr){
+  for (let i = 0; i < arr.length; i++){
+    console.log(`<div id=${arr[i].name}>`)
+  }
+  return arr;
 
   }
-
+getHTML(artists);
 
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
